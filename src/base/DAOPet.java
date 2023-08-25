@@ -118,18 +118,18 @@ public class DAOPet {
 	        preparedStatement.setInt(1, petId);
 
 	        resultSet = preparedStatement.executeQuery();
-	        if(resultSet != null) {
-	        	while(resultSet.next()) { 
-	        		System.out.println("Pet Id : " + petId + "exists..");
-	       		 	System.out.println("Pet Id : " + resultSet.getString(1));
-	       		 	System.out.println("Pet Name : " + resultSet.getString(2));
-	       		 	System.out.println("Pet Color : " + resultSet.getString(3));
-	       		 	System.out.println("Pet Price : " + resultSet.getString(4));
+	       
+	        while(resultSet.next()) { 
+	        	System.out.println("Pet Id : " + petId + " exists..");
+	       	 	System.out.println("Pet Id : " + resultSet.getString(1));
+	       	 	System.out.println("Pet Name : " + resultSet.getString(2));
+	      	 	System.out.println("Pet Color : " + resultSet.getString(3));
+	       	 	System.out.println("Pet Price : " + resultSet.getString(4));
 
-	       		 	System.out.println("...........");
-	       		 	available = false;
-	        	}
+	       		System.out.println("...........");
+	       	 	available = false;
 	        }
+	        
 		} catch(Exception e) {
 			e.getStackTrace();
 		} finally {

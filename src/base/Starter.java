@@ -14,6 +14,22 @@ public class Starter {
 		
 	}
 	
+	 public static void petIdThrowException(int petId, DBConnection dbConnection) throws InvalidPetIdException, SQLException{
+		 	String searchQuery = null;
+			ResultSet resultSet = null;
+			PreparedStatement preparedStatement = null;
+			
+					 
+			searchQuery = "SELECT * FROM `pet_store_system_db`.`pet` WHERE `pet_id` = ? ;";
+			preparedStatement = dbConnection.connection.prepareStatement(searchQuery);
+	        preparedStatement.setInt(1, petId);
+	        resultSet = preparedStatement.executeQuery();
+	        
+	        if(resultSet.next()) {
+	        	throw new InvalidPetIdException("Pet it is already present in the table, it should be unique");
+	        } 
+	    }
+	
 	public static void main(String[] args) throws SQLException, ClassNotFoundException {
 		
 		System.out.println("Pet Management System");
@@ -45,25 +61,26 @@ public class Starter {
 					System.out.println("Enter pet Id :");
 					int petId = scanner.nextInt();
 					scanner.nextLine();
-					
-					boolean available = daoPet.searchData(dbConnection, petId);
-					
-					if(available == false) {
-						System.out.println("PetId already exists, Try again with a different pet id");
-					} else {
-						dbConnection = new DBConnection();
-						System.out.println("Enter pet Name :");
-						String petName = scanner.nextLine();
+			        
+					try {
+			        petIdThrowException(petId, dbConnection);
+			      
+					System.out.println("Enter pet Name :");
+					String petName = scanner.nextLine();
 						
-						System.out.println("Enter pet Color :");
-						String petColor = scanner.nextLine();
+					System.out.println("Enter pet Color :");
+					String petColor = scanner.nextLine();
 						
-						System.out.println("Enter pet Price :");
-						double petPrice = scanner.nextDouble();
+					System.out.println("Enter pet Price :");
+					double petPrice = scanner.nextDouble();
 					 
-						Pet pet_obj = new Pet(petId, petName, petColor, petPrice);
-						daoPet.insertData(pet_obj, dbConnection); 
+					Pet pet_obj = new Pet(petId, petName, petColor, petPrice);
+					daoPet.insertData(pet_obj, dbConnection); 
+					
+					} catch(InvalidPetIdException e) {
+						e.printStackTrace();
 					}
+					
 			    } else if(choice == 'R') {
 					dbConnection = new DBConnection();
 			    	daoPet = new DAOPet();
