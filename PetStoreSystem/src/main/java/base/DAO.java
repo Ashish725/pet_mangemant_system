@@ -1,4 +1,4 @@
-package com.amdocs;
+package base;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class petData {
+public class DAO {
 	public void insertPet(Pet pet) {
         try (Connection connection = JDBCConnection.getConnection()) {
-            String query = "INSERT INTO pet (pet_id, pet_name, pet_retail_price,pet_color) VALUES (?, ?, ?, ?)";
+            String query = "INSERT INTO pet (pet_id, pet_name, pet_price,pet_color) VALUES (?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, pet.getPetId());
             statement.setString(2, pet.getPetName());
@@ -34,7 +34,7 @@ public class petData {
                 Pet pet = new Pet();
                 pet.setPetId(resultSet.getInt("pet_id"));
                 pet.setPetName(resultSet.getString("pet_name"));
-                pet.setPetPrice(resultSet.getInt("pet_retail_price"));
+                pet.setPetPrice(resultSet.getInt("pet_price"));
                 pet.setPetColor(resultSet.getString("pet_color"));
                 pets.add(pet);
             }
@@ -46,7 +46,7 @@ public class petData {
     }
 	 public void updatePet(Pet pet) {
 	        try (Connection connection = JDBCConnection.getConnection()) {
-	            String query = "UPDATE pet SET pet_name = ?, pet_retail_price = ?,pet_color = ? WHERE pet_id = ?";
+	            String query = "UPDATE pet SET pet_name = ?, pet_price = ?,pet_color = ? WHERE pet_id = ?";
 	            PreparedStatement statement = connection.prepareStatement(query);
 	           
 	            statement.setString(1, pet.getPetName());
@@ -59,7 +59,7 @@ public class petData {
 	            e.printStackTrace();
 	        }
 	    }
-	 
+//	 
 	 public void deletePet(int petId) {
 	        try (Connection connection = JDBCConnection.getConnection()) {
 	        	
@@ -84,7 +84,7 @@ public class petData {
 	                Pet pet = new Pet();
 	                pet.setPetId(resultSet.getInt("pet_id"));
 	                pet.setPetName(resultSet.getString("pet_name"));
-	                pet.setPetPrice(resultSet.getInt("pet_retail_price"));
+	                pet.setPetPrice(resultSet.getInt("pet_price"));
 	                pet.setPetColor(resultSet.getString("pet_color"));
 	                pets.add(pet);
 	            }

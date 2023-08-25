@@ -1,4 +1,4 @@
-package com.amdocs;
+package base;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,13 +6,13 @@ import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Scanner;
 
-public class Main {
+public class Starter {
 	public static void main(String[] args) throws IOException {
 		
 		System.out.println(JDBCConnection.getConnection());
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		Scanner sc= new Scanner(System.in);
-		petData pd = new petData();
+		DAO pd = new DAO();
 		Pet pet = new Pet();
 		Boolean f= true;
 		while(f) {
@@ -62,10 +62,14 @@ public class Main {
   				System.out.print("Enter Pet Name : ");
   				pet.setPetName(br.readLine());
   				
+  				try {
   				System.out.print("Enter Pet Price: ");
   				pet.setPetPrice(sc.nextInt());
-  				
-  				System.out.print("Enter Pet Col1or");
+  				}catch(Exception e) {
+  					System.out.println("Please enter an integer value");
+  					
+  				}
+  				System.out.print("Enter Pet Color");
   				pet.setPetColor(br.readLine());
   				pd.updatePet(pet);
   				break;
@@ -99,3 +103,4 @@ public class Main {
 		sc.close();
 	}
 }
+
