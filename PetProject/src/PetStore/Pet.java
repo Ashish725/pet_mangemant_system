@@ -1,7 +1,7 @@
-package com.amdocs;
+package PetStore;
 
 public class Pet {
-	    private int petId;
+	 private int petId;
 	    private String petName;
 	    private String petColor;
 	    private int petPrice;
