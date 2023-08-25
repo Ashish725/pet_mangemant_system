@@ -12,10 +12,8 @@ public class DAOPet {
 		
 		try {
         String insertQuery = "INSERT INTO `pet_store_system_db`.`pet` (`pet_id`, `pet_name`, `pet_color`, `pet_price`) VALUES ("
-        		+ "'" + pet.getPetId() + "', "
-        		+ "'" + pet.getPetName() + "', "
-        		+ "'" + pet.getPetColor() + "', "
-        		+ "'" + pet.getPetPrice() + "');";
+        		+ "'" + pet.getPetId() + "', " + "'" + pet.getPetName() + "', "
+        		+ "'" + pet.getPetColor() + "', " + "'" + pet.getPetPrice() + "');";
         dbConnection.statement.executeUpdate(insertQuery);
 		} catch(Exception e) {
 			e.getStackTrace();
