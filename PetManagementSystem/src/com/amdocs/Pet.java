@@ -1,7 +1,7 @@
 package com.amdocs;
 
 public class Pet {
-	    private int petId;
+	 private int petId;
 	    private String petName;
 	    private String petColor;
 	    private int petPrice;
@@ -37,5 +37,7 @@ public class Pet {
 	    public void setPetPrice(int petPrice) {
 	        this.petPrice = petPrice;
 	    }
-	    
+	
+	
+
 }
