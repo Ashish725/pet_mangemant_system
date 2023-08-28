@@ -1,4 +1,4 @@
-package com.amdocs;
+package allfiles;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,7 +10,7 @@ import java.util.List;
 public class petData {
 	public void insertPet(Pet pet) {
         try (Connection connection = JDBCConnection.getConnection()) {
-            String query = "INSERT INTO pet (pet_id, pet_name, pet_retail_price,pet_color) VALUES (?, ?, ?, ?)";
+            String query = "INSERT INTO pettable (pet_id, pet_name, pet_retail_price,pet_color) VALUES (?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, pet.getPetId());
             statement.setString(2, pet.getPetName());
@@ -26,7 +26,7 @@ public class petData {
         List<Pet> pets = new ArrayList<>();
 
         try (Connection connection = JDBCConnection.getConnection()) {
-            String query = "SELECT * FROM pet";
+            String query = "SELECT * FROM pettable";
             PreparedStatement statement = connection.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery();
 
@@ -46,7 +46,7 @@ public class petData {
     }
 	 public void updatePet(Pet pet) {
 	        try (Connection connection = JDBCConnection.getConnection()) {
-	            String query = "UPDATE pet SET pet_name = ?, pet_retail_price = ?,pet_color = ? WHERE pet_id = ?";
+	            String query = "UPDATE pettable SET pet_name = ?, pet_retail_price = ?,pet_color = ? WHERE pet_id = ?";
 	            PreparedStatement statement = connection.prepareStatement(query);
 	           
 	            statement.setString(1, pet.getPetName());
@@ -63,7 +63,7 @@ public class petData {
 	 public void deletePet(int petId) {
 	        try (Connection connection = JDBCConnection.getConnection()) {
 	        	
-	            String query = "DELETE FROM pet WHERE pet_id = ?";
+	            String query = "DELETE FROM pettable WHERE pet_id = ?";
 	            PreparedStatement statement = connection.prepareStatement(query);
 	            statement.setInt(1, petId);
 	            statement.executeUpdate();
@@ -75,7 +75,7 @@ public class petData {
 	 public List<Pet> search(int petId) {
 		 List<Pet> pets = new ArrayList<>();
 		 try(Connection connection = JDBCConnection.getConnection()){
-			 String query = "SELECT * FROM PET WHERE pet_id = ?";
+			 String query = "SELECT * FROM pettable WHERE pet_id = ?";
 			 PreparedStatement statement = connection.prepareStatement(query);
 			 statement.setInt(1, petId);
 			 ResultSet resultSet = statement.executeQuery();

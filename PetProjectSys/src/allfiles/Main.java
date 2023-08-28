@@ -1,4 +1,4 @@
-package com.amdocs;
+package allfiles;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -28,8 +28,8 @@ public class Main {
 			switch(choice) {
 			case 1:
 				
-//				System.out.print("Enter Pet ID: ");
-//				pet.setPetId(sc.nextInt());		
+			    System.out.print("Enter Pet ID: ");
+				pet.setPetId(sc.nextInt());		
 				
 			    System.out.print("Enter Pet Name: ");
 			    pet.setPetName(br.readLine());
@@ -65,7 +65,7 @@ public class Main {
   				System.out.print("Enter Pet Price: ");
   				pet.setPetPrice(sc.nextInt());
   				
-  				System.out.print("Enter Pet Col1or");
+  				System.out.print("Enter Pet Color");
   				pet.setPetColor(br.readLine());
   				pd.updatePet(pet);
   				break;
