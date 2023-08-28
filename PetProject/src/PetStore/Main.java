@@ -1,5 +1,4 @@
-package com.amdocs;
-
+package PetStore;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,7 +8,7 @@ import java.util.Scanner;
 public class Main {
 	public static void main(String[] args) throws IOException {
 		
-		System.out.println(JDBCConnection.getConnection());
+		//System.out.println(JDBCConnection.getConnection());
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		Scanner sc= new Scanner(System.in);
 		petData pd = new petData();
