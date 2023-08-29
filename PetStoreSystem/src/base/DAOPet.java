@@ -80,7 +80,6 @@ public class DAOPet {
     		PreparedStatement preparedStatement2 = dbConnection.connection.prepareStatement(searchQuery);
 	        preparedStatement2.setInt(1, petId);
 	        ResultSet resultSet = preparedStatement2.executeQuery();
-	        
 			if(!resultSet.next()) {
 				throw new InvalidPetIdException("Pet Id doesn't exist, try with different pet Id");
 			}
