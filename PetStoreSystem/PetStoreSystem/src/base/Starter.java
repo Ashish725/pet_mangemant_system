@@ -1,7 +1,10 @@
 package base;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.util.*;
 
@@ -23,7 +26,7 @@ public class Starter {
 	        resultSet = preparedStatement.executeQuery();
 	        
 	        if(resultSet.next()) {
-	        	throw new InvalidPetIdException("Pet id is already present in the table, it should be unique");
+	        	throw new InvalidPetIdException("Pet it is already present in the table, it should be unique");
 	        } 
 	    }
 	
@@ -36,16 +39,14 @@ public class Starter {
 		System.out.println("Press U to UPDATE any record of the table ");
 		System.out.println("Press D to DELETE any record from the table");
 		System.out.println("Press S to Search any record of the table");
-		System.out.println("Press F to Find all the pets that are available for sale");
-		System.out.println("Press B to find all the pets available in between the price range");
 		System.out.println("Press E to EXIT");
 
 		System.out.println("..................................");
 
-		Scanner scanner = new Scanner(System.in);
+		Scanner scanner_obj = new Scanner(System.in);
 		
 		System.out.println("Please enter your choice");
-		char choice = scanner.next().charAt(0);
+		char choice = scanner_obj.next().charAt(0);
 		
 		DBConnection dbConnection = null;
 		DAOPet daoPet = null;
@@ -55,14 +56,13 @@ public class Starter {
 			    if(choice == 'C') {
 			    	dbConnection = new DBConnection();
 			    	daoPet = new DAOPet();
-			    	scanner = new Scanner(System.in);
+			    	Scanner scanner = new Scanner(System.in);
 
 					System.out.println("Enter pet Id :");
 					int petId = scanner.nextInt();
 					scanner.nextLine();
 			        
 					try {
-						
 			        petIdThrowException(petId, dbConnection);
 			      
 					System.out.println("Enter pet Name :");
@@ -73,11 +73,8 @@ public class Starter {
 						
 					System.out.println("Enter pet Price :");
 					double petPrice = scanner.nextDouble();
-					
-					System.out.println("Enter whether pet is for sale or not (true/false): ");
-					boolean petStatus = scanner.nextBoolean();
 					 
-					Pet pet_obj = new Pet(petId, petName, petColor, petPrice, petStatus);
+					Pet pet_obj = new Pet(petId, petName, petColor, petPrice);
 					daoPet.insertData(pet_obj, dbConnection); 
 					
 					} catch(InvalidPetIdException e) {
@@ -104,20 +101,11 @@ public class Starter {
 			    	daoPet = new DAOPet();
 			    	
 			    	System.out.println("Please enter PetId : ");
-					scanner = new Scanner(System.in);
+					Scanner scanner = new Scanner(System.in);
 					int petId = scanner.nextInt();
 					scanner.nextLine();
 					
 					daoPet.searchData(dbConnection, petId);
-				} else if(choice == 'F') {
-					dbConnection = new DBConnection();
-					daoPet = new DAOPet();
-					daoPet.findSaleData(dbConnection);
-					
-				} else if (choice == 'B') {
-					dbConnection = new DBConnection();
-					daoPet = new DAOPet();
-					daoPet.rangeData(dbConnection);
 				}
 			    
 			    System.out.println("Please enter your choice if you want to continue....");
@@ -127,14 +115,10 @@ public class Starter {
 				System.out.println("Press U to UPDATE any record of the table ");
 				System.out.println("Press D to DELETE any record from the table");
 				System.out.println("Press S to Search any record of the table");
-				System.out.println("Press F to Find all the pets that are available for sale");
-				System.out.println("Press B to find all the pets available in between the price range");
 				System.out.println("Press E to EXIT");
-			    choice = scanner.next().charAt(0);
-			    scanner.nextLine();
+			    choice = scanner_obj.next().charAt(0);
+			    scanner_obj.nextLine();
 		  
 			}
-			
-			scanner.close();
 	   }     
 }

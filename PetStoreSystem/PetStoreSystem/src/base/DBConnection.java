@@ -2,8 +2,11 @@ package base;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
-
+import java.util.Scanner;
 
 public class DBConnection {	
 	private static final String url = "jdbc:mysql://localhost:3306/pet_store_system_db";
