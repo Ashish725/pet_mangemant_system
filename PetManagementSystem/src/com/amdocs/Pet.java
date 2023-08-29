@@ -1,43 +1,52 @@
 package com.amdocs;
 
 public class Pet {
-	 private int petId;
-	    private String petName;
-	    private String petColor;
-	    private int petPrice;
-	    
-	    public int getPetId() {
-	        return petId;
-	    }
+	private int petId;
+	private String petName;
+	private String petColor;
+	private int petPrice;
+	private String saleStatus ;
 
-	    public void setPetId(int petId) {
-	        this.petId = petId;
-	    }
+	public int getPetId() {
+		return petId;
+	}
 
-	    public String getPetName() {
-	        return petName;
-	    }
+	public void setPetId(int petId) {
+		this.petId = petId;
+	}
 
-	    public void setPetName(String petName) {
-	        this.petName = petName;
-	    }
+	public String getPetName() {
+		return petName;
+	}
 
-	    public String getPetColor() {
-	        return petColor;
-	    }
+	public void setPetName(String petName) {
+		this.petName = petName;
+	}
 
-	    public void setPetColor(String petColor) {
-	        this.petColor = petColor;
-	    }
+	public String getPetColor() {
+		return petColor;
+	}
 
-	    public int getPetPrice() {
-	        return petPrice;
-	    }
+	public void setPetColor(String petColor) {
+		this.petColor = petColor;
+	}
 
-	    public void setPetPrice(int petPrice) {
-	        this.petPrice = petPrice;
-	    }
+	public int getPetPrice() {
+		return petPrice;
+	}
+
+	public void setPetPrice(int petPrice) {
+		this.petPrice = petPrice;
+	}
 	
-	
+	public String getSaleStatus() {
+		return saleStatus;
+	}
+
+	public void setSaleStatus(String saleStatus) {
+		this.saleStatus = saleStatus;
+	}
+
+
 
 }
