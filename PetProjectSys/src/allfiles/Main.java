@@ -21,8 +21,8 @@ public class Main {
 			System.out.println("3. Update a Pet");
 			System.out.println("4. Delete a Pet");
 			System.out.println("5. Search a Pet By Id");
-			System.out.println("6. Exit");
-			
+			System.out.println("6. Search a pet by price range");
+			System.out.println("7. Exit");
 			int choice = sc.nextInt();
 			sc.nextLine();
 			switch(choice) {
@@ -89,6 +89,10 @@ public class Main {
 				}
 				break;
 			case 6:
+				System.out.println("Enter Price Range in which you want to search: ");
+				pd.searchPrice();
+				break;
+			case 7:
 				f=false;
 				break;
 			    

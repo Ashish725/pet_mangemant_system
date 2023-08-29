@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class petData {
 	public void insertPet(Pet pet) {
@@ -95,6 +96,32 @@ public class petData {
 		 }
 		 return pets;
 	 }
+     public void searchPrice() {
+    	 Scanner sc=new Scanner(System.in);
+    	 System.out.println("Enter first price:- "+" ");
+    	 int price1=sc.nextInt();
+    	 System.out.println("Enter second price:- "+" ");
+    	 int price2=sc.nextInt();
+    	 
+    	 
+    	 try (Connection connection = JDBCConnection.getConnection()) {
+             String query = "SELECT * FROM pettable Where pet_retail_price BETWEEN " +price1 + " AND " +price2+ ";";
+             PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery();
 
-
+             while (resultSet.next()) {
+             	System.out.println("Pet ID: " + resultSet.getInt("Pet_id"));
+ 			    System.out.println("Pet Name: " + resultSet.getString("Pet_name"));
+ 			    System.out.println("Pet Price: " + resultSet.getInt("Pet_retail_price"));
+ 			    System.out.println("Pet Color: " + resultSet.getString("Pet_color"));
+ 			   
+ 			    System.out.println("--------------------------");
+ 			}
+             }
+    	 
+    	 catch (SQLException e) {
+             e.printStackTrace();
+         }
+     }
+     
 }
