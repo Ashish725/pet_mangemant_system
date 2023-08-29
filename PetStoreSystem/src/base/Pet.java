@@ -6,12 +6,14 @@ class Pet {
 	private String petName;
 	private String petColor;
 	private double petPrice;
+	private boolean petStatus;
 	
-	public Pet(int petId, String petName, String petColor, double petPrice) {
+	public Pet(int petId, String petName, String petColor, double petPrice, boolean petStatus) {
 		this.petId = petId;
 		this.petName = petName;
 		this.petColor = petColor;
 		this.petPrice = petPrice;
+		this.petStatus = petStatus;
 	}
 
 	public double getPetPrice() {
@@ -44,6 +46,14 @@ class Pet {
 
 	public void setPetId(int petId) {
 		this.petId = petId;
+	}
+
+	public boolean getPetStatus() {
+		return petStatus;
+	}
+
+	public void setPetStatus(boolean petStatus) {
+		this.petStatus = petStatus;
 	}
 
 }

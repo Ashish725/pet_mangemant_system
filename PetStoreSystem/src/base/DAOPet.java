@@ -11,10 +11,17 @@ public class DAOPet {
 		// Insert: Create a new record
 		
 		try {
-        String insertQuery = "INSERT INTO `pet_store_system_db`.`pet` (`pet_id`, `pet_name`, `pet_color`, `pet_price`) VALUES ("
+		
+		char for_sale = '0';
+		
+		if(pet.getPetStatus()) for_sale = '1';
+		
+        String insertQuery = "INSERT INTO `pet_store_system_db`.`pet` (`pet_id`, `pet_name`, `pet_color`, `pet_price`, `sale_status`) VALUES ("
         		+ "'" + pet.getPetId() + "', " + "'" + pet.getPetName() + "', "
-        		+ "'" + pet.getPetColor() + "', " + "'" + pet.getPetPrice() + "');";
+        		+ "'" + pet.getPetColor() + "', " + "'" + pet.getPetPrice() + "', "
+        		+ "'" + for_sale + "');";
         dbConnection.statement.executeUpdate(insertQuery);
+        
 		} catch(Exception e) {
 			e.getStackTrace();
 		} finally {
@@ -30,22 +37,27 @@ public class DAOPet {
 			ResultSet resultSet = null;
 			String readQuery = "SELECT * FROM `pet_store_system_db`.`pet`;";
 	        resultSet = dbConnection.statement.executeQuery(readQuery);
-	        if(resultSet != null) {
-	        	while(resultSet.next()) { 
-	       		 	System.out.println("Pet Id : " + resultSet.getString(1));
-	       		 	System.out.println("Pet Name : " + resultSet.getString(2));
-	       		 	System.out.println("Pet Color : " + resultSet.getString(3));
-	       		 	System.out.println("Pet Price : " + resultSet.getString(4));
+	        
+	     
+	        while(resultSet.next()) { 
+	        		System.out.println("Pet Id : " + resultSet.getString(1));
+	        		System.out.println("Pet Name : " + resultSet.getString(2));
+	       	 		System.out.println("Pet Color : " + resultSet.getString(3));
+	       	 		System.out.println("Pet Price : " + resultSet.getString(4));
+	       	 		System.out.print("Pet for sale : ");
+	       	 		if(resultSet.getString(5).charAt(0) == '1') {
+	       	 			System.out.println("YES");
+	       	 		} else System.out.println("NO");
 
-	       		 	System.out.println("...........");
+	       	 		System.out.println("...........");
 	        	}
-	        }
-		} catch(Exception e) {
-			e.getStackTrace();			
-		} finally {
+	        
+			} catch(Exception e) {
+					e.getStackTrace();			
+			} finally {
 		     dbConnection.statement.close();
 		     dbConnection.connection.close();
-		}
+			}
 	}
 	
 	public void updateData(DBConnection dbConnection) throws SQLException {
@@ -116,18 +128,30 @@ public class DAOPet {
 	        preparedStatement.setInt(1, petId);
 
 	        resultSet = preparedStatement.executeQuery();
-	       
+	        
 	        while(resultSet.next()) { 
 	        	System.out.println("Pet Id : " + petId + " exists..");
 	       	 	System.out.println("Pet Id : " + resultSet.getString(1));
 	       	 	System.out.println("Pet Name : " + resultSet.getString(2));
 	      	 	System.out.println("Pet Color : " + resultSet.getString(3));
 	       	 	System.out.println("Pet Price : " + resultSet.getString(4));
+	       	 	System.out.print("Pet for sale : ");
+	       	 	
+	       	 	if(resultSet.getString(5).charAt(0) == '1') {
+	       	 		System.out.println("YES");
+	       	 	} else System.out.println("NO");
+	       	 	
 
 	       		System.out.println("...........");
 	       	 	available = false;
 	        }
 	        
+	        if(available == true) {
+	        	throw new InvalidPetIdException("Pet Id doesn't exist");
+	        }
+	        
+		} catch(InvalidPetIdException e) {
+			e.printStackTrace();
 		} catch(Exception e) {
 			e.getStackTrace();
 		} finally {
@@ -136,5 +160,33 @@ public class DAOPet {
 		}
 		
 		return available;
+	}
+	
+	public void findSaleData(DBConnection dbConnection) throws SQLException {
+		try {
+			ResultSet resultSet = null;
+			String readQuery = "SELECT * FROM `pet_store_system_db`.`pet` WHERE `sale_status`= 1;";
+	        resultSet = dbConnection.statement.executeQuery(readQuery);
+	        
+	     
+	        while(resultSet.next()) { 
+	        		System.out.println("Pet Id : " + resultSet.getString(1));
+	        		System.out.println("Pet Name : " + resultSet.getString(2));
+	       	 		System.out.println("Pet Color : " + resultSet.getString(3));
+	       	 		System.out.println("Pet Price : " + resultSet.getString(4));
+	       	 		System.out.print("Pet for sale : ");
+	       	 		if(resultSet.getString(5).charAt(0) == '1') {
+	       	 			System.out.println("YES");
+	       	 		} else System.out.println("NO");
+
+	       	 		System.out.println("...........");
+	        	}
+			} catch(Exception e) {
+					e.getStackTrace();			
+			} finally {
+		     dbConnection.statement.close();
+		     dbConnection.connection.close();
+			}
+	
 	}
 }

@@ -26,7 +26,7 @@ public class Starter {
 	        resultSet = preparedStatement.executeQuery();
 	        
 	        if(resultSet.next()) {
-	        	throw new InvalidPetIdException("Pet it is already present in the table, it should be unique");
+	        	throw new InvalidPetIdException("Pet id is already present in the table, it should be unique");
 	        } 
 	    }
 	
@@ -39,6 +39,7 @@ public class Starter {
 		System.out.println("Press U to UPDATE any record of the table ");
 		System.out.println("Press D to DELETE any record from the table");
 		System.out.println("Press S to Search any record of the table");
+		System.out.println("Press F to Find all the pets that are available for sale");
 		System.out.println("Press E to EXIT");
 
 		System.out.println("..................................");
@@ -73,8 +74,11 @@ public class Starter {
 						
 					System.out.println("Enter pet Price :");
 					double petPrice = scanner.nextDouble();
+					
+					System.out.println("Enter whether pet is for sale or not : ");
+					boolean petStatus = scanner.nextBoolean();
 					 
-					Pet pet_obj = new Pet(petId, petName, petColor, petPrice);
+					Pet pet_obj = new Pet(petId, petName, petColor, petPrice, petStatus);
 					daoPet.insertData(pet_obj, dbConnection); 
 					
 					} catch(InvalidPetIdException e) {
@@ -106,6 +110,10 @@ public class Starter {
 					scanner.nextLine();
 					
 					daoPet.searchData(dbConnection, petId);
+				} else if(choice == 'F') {
+					dbConnection = new DBConnection();
+					daoPet = new DAOPet();
+					daoPet.findSaleData(dbConnection);
 				}
 			    
 			    System.out.println("Please enter your choice if you want to continue....");
@@ -115,6 +123,7 @@ public class Starter {
 				System.out.println("Press U to UPDATE any record of the table ");
 				System.out.println("Press D to DELETE any record from the table");
 				System.out.println("Press S to Search any record of the table");
+				System.out.println("Press F to Find all the pets that are available for sale");
 				System.out.println("Press E to EXIT");
 			    choice = scanner_obj.next().charAt(0);
 			    scanner_obj.nextLine();
