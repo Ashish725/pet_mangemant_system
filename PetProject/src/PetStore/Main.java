@@ -20,7 +20,8 @@ public class Main {
 			System.out.println("3. Update a Pet");
 			System.out.println("4. Delete a Pet");
 			System.out.println("5. Search a Pet By Id");
-			System.out.println("6. Exit");
+			System.out.println("6. Search pet by price range");
+			System.out.println("7. Exit");
 			
 			int choice = sc.nextInt();
 			sc.nextLine();
@@ -87,7 +88,13 @@ public class Main {
 				    System.out.println("--------------------------");
 				}
 				break;
+				
 			case 6:
+				  System.out.println("Enter Price Range");
+				  pd.searchPrice();
+				  break;
+				
+			case 7:
 				f=false;
 				break;
 			    
