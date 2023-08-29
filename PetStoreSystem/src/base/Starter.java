@@ -27,7 +27,7 @@ public class Starter {
 	        } 
 	    }
 	
-	public static void main(String[] args) throws SQLException, ClassNotFoundException {
+	public void MainMenu() throws SQLException, ClassNotFoundException {
 		
 		System.out.println("Pet Management System");
 		System.out.println("..................................");

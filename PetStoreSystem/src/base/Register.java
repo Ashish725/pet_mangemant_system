@@ -3,7 +3,7 @@ package base;
 import java.util.Scanner;
 
 public class Register {
-	public static void main(String[] args) {
+	public Register() {
 		Scanner scanner = new Scanner(System.in);
 		
 		System.out.println("Register yourself to Pet Management System");
@@ -21,7 +21,8 @@ public class Register {
 	        		+ "'" + user.getEmail() + "', " + "'" + user.getPassword() + "');";
 				dbConnection.statement.executeUpdate(insertQuery);
 				System.out.println("User created successfully");
-			Login.main(args);
+			Login login = new Login();
+			login.main(null);
 
 		} catch(Exception e) {
 			e.getStackTrace();

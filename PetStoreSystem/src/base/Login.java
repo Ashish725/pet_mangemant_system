@@ -36,14 +36,15 @@ public class Login {
             if(resultSet.next()) {
             	System.out.println("Logged in successfully");
         		System.out.println(".....................");
-        		Starter.main(args);
+        		Starter mainMenu = new Starter();
+        		mainMenu.MainMenu();
             } else {
             	System.out.println("Incorrect password, try logging again!!");
             }
     		
     		
         } else {
-        	Register.main(args);
+        	Register register = new Register();
         }
         
 		

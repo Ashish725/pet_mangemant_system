@@ -22,8 +22,4 @@ public class DBConnection {
 			e.printStackTrace();
 		}
 	}
-	
-	public static void main(String[] args) {
-	    
-	} 
 }
