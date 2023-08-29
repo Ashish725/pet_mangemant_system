@@ -2,13 +2,14 @@ package petstoremanagementsystem;
 
 public class pet {
 
+
 	public int petId;
 	public String petName;
 	public String petType;
 	public String petAge;
-	
-	
-	
+	public String Vaccinated;
+
+
 	public int getPetId() {
 		return petId;
 	}
@@ -33,13 +34,21 @@ public class pet {
 	public void setPetAge(String petAge) {
 		this.petAge = petAge;
 	}
-	
-	public pet(int petid,String petName,String petType, String petAge) {
+	public String getVaccinated() {
+		return Vaccinated;
+	}
+	public void setVaccinated(String vaccinated) {
+		Vaccinated = vaccinated;
+	}
+
+
+	public pet(int petid,String petName,String petType, String petAge,String vaccinated) {
 		super();
 		this.petId = petid;
 		this.petName = petName;
 		this.petType = petType;
 		this.petAge = petAge;
-	}
+		this.Vaccinated = vaccinated;
 
+	}
 }
