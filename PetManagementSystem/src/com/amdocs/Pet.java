@@ -5,8 +5,17 @@ public class Pet {
 	    private String petName;
 	    private String petColor;
 	    private int petPrice;
+	    private String saleStatus;
 	    
-	    public int getPetId() {
+	    public String getSaleStatus() {
+			return saleStatus;
+		}
+
+		public void setSaleStatus(String saleStatus) {
+			this.saleStatus = saleStatus;
+		}
+
+		public int getPetId() {
 	        return petId;
 	    }
 

@@ -21,7 +21,9 @@ public class Main {
 			System.out.println("3. Update a Pet");
 			System.out.println("4. Delete a Pet");
 			System.out.println("5. Search a Pet By Id");
-			System.out.println("6. Exit");
+			System.out.println("6. View all pets for Sale");
+			System.out.println("7. Search by price Range");
+			System.out.println("8. Exit");
 			
 			int choice = sc.nextInt();
 			sc.nextLine();
@@ -40,6 +42,9 @@ public class Main {
 			    System.out.print("Enter Retail Price of Pet: ");
 			    pet.setPetPrice(sc.nextInt());
 			    
+			    System.out.print("Enter Pet For Sale Status ,YES OR NO: ");
+			    pet.setSaleStatus(br.readLine());
+			    
 			    pd.insertPet(pet);
 			    break;
 			case 2:
@@ -51,7 +56,8 @@ public class Main {
 				    System.out.println("Pet Name: " + pets.getPetName());
 				    System.out.println("Pet Price: " + pets.getPetPrice());
 				    System.out.println("Pet Color: " + pets.getPetColor());
-				   
+				    System.out.println("Pet For Sale: " + pets.getSaleStatus());
+				    
 				    System.out.println("--------------------------");
 				}
 				break;
@@ -67,6 +73,10 @@ public class Main {
   				
   				System.out.print("Enter Pet Col1or");
   				pet.setPetColor(br.readLine());
+  				
+  				System.out.print("Enter Pet For Sale Status ,YES OR NO: ");
+			    pet.setPetColor(br.readLine());
+			    
   				pd.updatePet(pet);
   				break;
   				
@@ -84,11 +94,40 @@ public class Main {
 				    System.out.println("Pet Name: " + pets.getPetName());
 				    System.out.println("Pet Price: " + pets.getPetPrice());
 				    System.out.println("Pet Color: " + pets.getPetColor());
-				   
+				    System.out.println("Pet For Sale: " + pets.getSaleStatus());
 				    System.out.println("--------------------------");
 				}
 				break;
 			case 6:
+				List<Pet> allPets1 = pd.getpetforsale();
+
+				for (Pet pets : allPets1) {
+				    System.out.println("Pet ID: " + pets.getPetId());
+				    System.out.println("Pet Name: " + pets.getPetName());
+				    System.out.println("Pet Price: " + pets.getPetPrice());
+				    System.out.println("Pet Color: " + pets.getPetColor());
+				    System.out.println("Pet For Sale: " + pets.getSaleStatus());
+				    
+				    System.out.println("--------------------------");
+				}
+				break;
+			case 7:
+				System.out.print("Enter the upper and lower price of the pet: ");
+				
+				List<Pet> pet_price = pd.Search_by_price_range(sc.nextInt(),sc.nextInt());
+
+				for (Pet pets : pet_price) {
+				    System.out.println("Pet ID: " + pets.getPetId());
+				    System.out.println("Pet Name: " + pets.getPetName());
+				    System.out.println("Pet Price: " + pets.getPetPrice());
+				    System.out.println("Pet Color: " + pets.getPetColor());
+				    System.out.println("Pet Sale Status: " + pets.getSaleStatus());
+				   
+				    System.out.println("--------------------------");
+				}
+				break;
+				
+			case 8:
 				f=false;
 				break;
 			    
@@ -96,6 +135,7 @@ public class Main {
 			
 			
 		}
-		sc.close();
+		//sc.close();
 	}
 }
+
