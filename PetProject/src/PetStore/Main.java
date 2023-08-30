@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Scanner;
 
-
+//pet store system
 
 
 public class Main {
@@ -24,7 +24,8 @@ public class Main {
 			System.out.println("3. Update a Pet");
 			System.out.println("4. Delete a Pet");
 			System.out.println("5. Search a Pet By Id");
-			System.out.println("6. Exit");
+			System.out.println("6. Search a Pet Between the price range");
+			System.out.println("7. Exit");
 			
 			int choice = sc.nextInt();
 			sc.nextLine();
@@ -50,7 +51,7 @@ public class Main {
 				List<Pet> allPets = pd.getAllPets();
 
 				for (Pet pets : allPets) {
-				    System.out.println("Pet ID: " + pets.getPetId());
+				    System.out.println("Pet ID"	+ ": " + pets.getPetId());
 				    System.out.println("Pet Name: " + pets.getPetName());
 				    System.out.println("Pet Price: " + pets.getPetPrice());
 				    System.out.println("Pet Color: " + pets.getPetColor());
@@ -68,7 +69,7 @@ public class Main {
   				System.out.print("Enter Pet Price: ");
   				pet.setPetPrice(sc.nextInt());
   				
-  				System.out.print("Enter Pet Col1or");
+  				System.out.print("Enter Pet Color:");
   				pet.setPetColor(br.readLine());
   				
   				pd.updatePet(pet);
@@ -83,16 +84,20 @@ public class Main {
 				System.out.print("Enter Pet ID which you want to search: ");
 				List<Pet> petDet = pd.search(sc.nextInt());
 
-				for (Pet pets : petDet) {
-				    System.out.println("Pet ID: " + pets.getPetId());
-				    System.out.println("Pet Name: " + pets.getPetName());
-				    System.out.println("Pet Price: " + pets.getPetPrice());
-				    System.out.println("Pet Color: " + pets.getPetColor());
+				for (Pet i : petDet) {
+				    System.out.println("Pet ID: " + i.getPetId());
+				    System.out.println("Pet Name: " + i.getPetName());
+				    System.out.println("Pet Price: " + i.getPetPrice());
+				    System.out.println("Pet Color: " + i.getPetColor());
 				   
 				    System.out.println("--------------------------");
 				}
 				break;
 			case 6:
+				System.out.println("Enter Price range in which you want to search: ");
+				pd.searchPrice();
+				break;
+			case 7:
 				f=false;
 				break;
 			    
