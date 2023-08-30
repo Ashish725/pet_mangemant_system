@@ -1,140 +1,29 @@
 package com.amdocs;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
 	public static void main(String[] args) throws IOException {
 		
 		System.out.println(JDBCConnection.getConnection());
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		Scanner sc= new Scanner(System.in);
-		petData pd = new petData();
-		Pet pet = new Pet();
-		Boolean f= true;
-		while(f) {
-			System.out.println("1. Add a Pet");
-			System.out.println("2. Display all pets");
-			System.out.println("3. Update a Pet");
-			System.out.println("4. Delete a Pet");
-			System.out.println("5. Search a Pet By Id");
-			System.out.println("6. View all pets for Sale");
-			System.out.println("7. Search by price Range");
-			System.out.println("8. Exit");
-			
-			int choice = sc.nextInt();
-			sc.nextLine();
-			switch(choice) {
-			case 1:
-				
-//				System.out.print("Enter Pet ID: ");
-//				pet.setPetId(sc.nextInt());		
-				
-			    System.out.print("Enter Pet Name: ");
-			    pet.setPetName(br.readLine());
-			    
-			    System.out.print("Enter Pet Color: ");
-			    pet.setPetColor(br.readLine());
-			    
-			    System.out.print("Enter Retail Price of Pet: ");
-			    pet.setPetPrice(sc.nextInt());
-			    
-			    System.out.print("Enter Pet For Sale Status ,YES OR NO: ");
-			    pet.setSaleStatus(br.readLine());
-			    
-			    pd.insertPet(pet);
-			    break;
-			case 2:
+		Scanner scanner = new Scanner(System.in);
 
-				List<Pet> allPets = pd.getAllPets();
+        System.out.println("Welcome to the Pet Management System!");
+        System.out.println("Choose an option:");
+        System.out.println("1. Login");
+        System.out.println("2. Register");
 
-				for (Pet pets : allPets) {
-				    System.out.println("Pet ID: " + pets.getPetId());
-				    System.out.println("Pet Name: " + pets.getPetName());
-				    System.out.println("Pet Price: " + pets.getPetPrice());
-				    System.out.println("Pet Color: " + pets.getPetColor());
-				    System.out.println("Pet For Sale: " + pets.getSaleStatus());
-				    
-				    System.out.println("--------------------------");
-				}
-				break;
-			case 3:
-  				System.out.print("Enter Pet ID that you want to update: ");
-  				pet.setPetId(sc.nextInt());
-  				
-  				System.out.print("Enter Pet Name : ");
-  				pet.setPetName(br.readLine());
-  				
-  				System.out.print("Enter Pet Price: ");
-  				pet.setPetPrice(sc.nextInt());
-  				
-  				System.out.print("Enter Pet Col1or");
-  				pet.setPetColor(br.readLine());
-  				
-  				System.out.print("Enter Pet For Sale Status ,YES OR NO: ");
-			    pet.setPetColor(br.readLine());
-			    
-  				pd.updatePet(pet);
-  				break;
-  				
-			case 4:
-				System.out.print("Enter Pet ID that you want to Delete: ");
-				pd.deletePet(sc.nextInt());
-  				
-  				break;
-			case 5:
-				System.out.print("Enter Pet ID which you want to search: ");
-				List<Pet> petDet = pd.search(sc.nextInt());
+        int choice = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
 
-				for (Pet pets : petDet) {
-				    System.out.println("Pet ID: " + pets.getPetId());
-				    System.out.println("Pet Name: " + pets.getPetName());
-				    System.out.println("Pet Price: " + pets.getPetPrice());
-				    System.out.println("Pet Color: " + pets.getPetColor());
-				    System.out.println("Pet For Sale: " + pets.getSaleStatus());
-				    System.out.println("--------------------------");
-				}
-				break;
-			case 6:
-				List<Pet> allPets1 = pd.getpetforsale();
-
-				for (Pet pets : allPets1) {
-				    System.out.println("Pet ID: " + pets.getPetId());
-				    System.out.println("Pet Name: " + pets.getPetName());
-				    System.out.println("Pet Price: " + pets.getPetPrice());
-				    System.out.println("Pet Color: " + pets.getPetColor());
-				    System.out.println("Pet For Sale: " + pets.getSaleStatus());
-				    
-				    System.out.println("--------------------------");
-				}
-				break;
-			case 7:
-				System.out.print("Enter the upper and lower price of the pet: ");
-				
-				List<Pet> pet_price = pd.Search_by_price_range(sc.nextInt(),sc.nextInt());
-
-				for (Pet pets : pet_price) {
-				    System.out.println("Pet ID: " + pets.getPetId());
-				    System.out.println("Pet Name: " + pets.getPetName());
-				    System.out.println("Pet Price: " + pets.getPetPrice());
-				    System.out.println("Pet Color: " + pets.getPetColor());
-				    System.out.println("Pet Sale Status: " + pets.getSaleStatus());
-				   
-				    System.out.println("--------------------------");
-				}
-				break;
-				
-			case 8:
-				f=false;
-				break;
-			    
-			}
-			
-			
-		}
+        if (choice == 1) {
+            loginUser.loginUsr(scanner);
+        } else if (choice == 2) {
+            registerUser.registerUsr(scanner);
+        } else {
+            System.out.println("Invalid choice. Exiting.");
+        }
 		//sc.close();
 	}
 }

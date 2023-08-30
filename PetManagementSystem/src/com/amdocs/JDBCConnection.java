@@ -12,7 +12,7 @@ public class JDBCConnection {
 //			Class.forName("com.mysql.cj.jdbc.Driver");  
 			con=DriverManager.getConnection(  
 			"jdbc:mysql://localhost:3306/pet_store_system","root","Joga@776");  
-			//here sonoo is database name, root is username and password  
+ 
 			return con;
 		}
 		catch(Exception e)
