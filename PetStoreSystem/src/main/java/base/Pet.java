@@ -6,6 +6,7 @@ public class Pet {
     private int petPrice;
     private String petColor;
     private String sale_status;
+    private String pet_type;
 	
 	public int getPetId() {
 		return petId;
@@ -53,6 +54,12 @@ public class Pet {
     	this.sale_status  = sale_status;
     }
    
-
+    public String getPetType() {
+    	return pet_type;
+    }
+    
+    public void setPetType(String pet_type) {
+    	this.pet_type  = pet_type;
+    }
     
 }
