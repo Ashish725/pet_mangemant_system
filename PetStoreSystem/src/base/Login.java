@@ -28,9 +28,10 @@ public class Login {
         	System.out.println("Enter  password: ");
     		String password = scanner.nextLine();
     		
-    		String searchPwd = "SELECT email FROM user WHERE password = ?";
+    		String searchPwd = "SELECT password FROM user WHERE password = ? AND email = ?";
     		preparedStatement = dbConnection.connection.prepareStatement(searchPwd);
             preparedStatement.setString(1, password);
+            preparedStatement.setString(2, email);
             resultSet = preparedStatement.executeQuery();
     		
             if(resultSet.next()) {
