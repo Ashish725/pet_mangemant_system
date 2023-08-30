@@ -13,11 +13,11 @@ public class DAO {
             String query = "INSERT INTO pet ( pet_name, pet_price,pet_color,sale_status,pet_type) VALUES (?, ?, ?,?,?)";
             PreparedStatement statement = connection.prepareStatement(query);
             //statement.setInt(1, pet.getPetId());
-            statement.setString(2, pet.getPetName());
-            statement.setDouble(3, pet.getPetPrice());
-            statement.setString(4, pet.getPetColor());
-            statement.setString(5, pet.getSaleStatus());
-            statement.setString(6, pet.getPetType());
+            statement.setString(1, pet.getPetName());
+            statement.setDouble(2, pet.getPetPrice());
+            statement.setString(3, pet.getPetColor());
+            statement.setString(4, pet.getSaleStatus());
+            statement.setString(5, pet.getPetType());
             
             statement.executeUpdate();
         } catch (SQLException e) {
